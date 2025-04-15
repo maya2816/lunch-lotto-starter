@@ -22,7 +22,18 @@
         <img id="loading-gif" src="assets/loading.gif" alt="Loading..." style="display: none;">
         <canvas id="wheel" width="310" height="310"></canvas>
         <button id="spin">Spin</button>
+
+        <!-- 🏆 History Log -->
+        <!-- This displays a list of previously selected restaurants -->
+        <!--Container for history log, initially hidden -->
+        <div id="history-log" style="display: none;">
+          <!--Heading for the history section -->
+          <h3>History of Selected Restaurants</h3>
+          <!-- Unordered list that will be dynamically populated with history entries -->
+          <ul id="history-list"></ul>
+        </div>
       </div>
+
       <!-- 🏆 Selected Restaurant Result -->
       <div id="result-container" style="display: none;">
         <p id="selected-restaurant"></p>
