@@ -6,46 +6,73 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 520px;
+    justify-content: flex-start; /* Changed from center to allow proper scrolling */
+    min-height: 520px; /* Changed from fixed height to min-height */
     width: 400px;
     background-color: #ffffff;
     /* box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); */
-    overflow: hidden;
+    overflow-y: auto; /* Allow scrolling if content is too long */
+    overflow-x: hidden;
     margin: 0;
-  }  
+    padding: 20px;
+    box-sizing: border-box;
+}  
 
-  canvas {
+#popup-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+canvas {
     border-radius: 50%;
     border: 10px solid #fff;
     width: 310px; /* Layout width */
     height: 310px; /* Layout height */
     display: block; 
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-  }
+    margin-bottom: 20px; /* Add space below wheel */
+}
   
-  button {
+button {
     font-family: 'Poppins', sans-serif;
-    margin-top: 26px;
-    margin-left: 60px;
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    width: 60%;
-  }
-  
-  button:hover {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
     background-color: #0056b3;
-  }
+}
 
-
+/* Specific styling for spin button */
 #spin {
     font-weight: bold;
-  }
-  
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+#spin:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
 /* Style for the Settings Button */
 #open-settings {
   background: none; /* No default button background */
@@ -135,15 +162,16 @@ html, body {
   margin: 0 auto 20px;
 }
 
-background-color:rgb(61, 69, 119);
-  
 /* 🎡 Ensure `wheel-container` is positioned relative */
 #wheel-container {
-  position: relative;  /* ✅ This makes the GIF position relative to the wheel */
-  text-align: center;
-  width: 100%; /* ✅ Prevents overflow */
-  height: 310px; /* ✅ Matches wheel size */
-  overflow: hidden; /* ✅ Ensures GIF doesn't overflow */
+    position: relative;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 /* 🔄 Loading GIF: Centered Inside the Wheel */
@@ -174,4 +202,91 @@ background-color:rgb(61, 69, 119);
 
 .swal-title {
   font-size: 18px !important; /* Customize the title text size */
+}
+
+/* Update: Add History Feature Styles  */
+
+/* History Container Styling */
+#history-log {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* History Header Styling */
+#history-log h3 {
+  color: #2c3e50;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* History List Container */
+#history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Individual History Entry Styling */
+#history-list li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 14px;
+  color: #495057;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+/* Last History Entry (removes bottom border) */
+#history-list li:last-child {
+  border-bottom: none;
+}
+
+/* Restaurant Link Styling */
+#history-list li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#history-list li a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Timestamp Styling */
+#history-list li .timestamp {
+  color: #6c757d;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+/* Custom Scrollbar for History List */
+#history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+#history-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#history-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+#history-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
