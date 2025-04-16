@@ -124,14 +124,15 @@ function updateWheel(restaurants) {
       name: restaurant.name,
       googleMapsLink: restaurant.googleMapsLink // Add the Google Maps link
     }));
-  
     console.log("✅ Selected Restaurants for the Wheel:", restaurantDetails);
-  
+
     // Redraw the wheel with the updated options
     drawWheel();
   }
 
-// Update: Add History Feature Implementation
+// ===============================================================================
+//                       Update: History Feature Implementation
+// ===============================================================================
 
 // Global state for restaurant history
 let restaurantHistory = [];
@@ -147,15 +148,12 @@ function addToHistory(restaurant) {
         timestamp: new Date().toLocaleString(),
         googleMapsLink: restaurant.googleMapsLink
     };
-    
     // Add to beginning of array (most recent first)
     restaurantHistory.unshift(historyEntry);
-    
     // Maintain only last 10 entries for performance
     if (restaurantHistory.length > 10) {
         restaurantHistory.pop();
     }
-    
     // Persist to Chrome storage
     chrome.storage.sync.set({ 'restaurantHistory': restaurantHistory }, () => {
         console.log('History saved successfully');
@@ -169,31 +167,25 @@ function addToHistory(restaurant) {
 function updateHistoryDisplay() {
     const historyList = document.getElementById('history-list');
     if (!historyList) return;
-    
     // Clear existing entries
     historyList.innerHTML = '';
-    
     // Add each history entry to the UI
     restaurantHistory.forEach((entry) => {
         const li = document.createElement('li');
-        
         // Create clickable restaurant name
         const nameLink = document.createElement('a');
         nameLink.href = entry.googleMapsLink;
         nameLink.target = '_blank';
         nameLink.textContent = entry.name;
-        
         // Create timestamp display
         const timestamp = document.createElement('span');
         timestamp.className = 'timestamp';
         timestamp.textContent = entry.timestamp;
-        
         // Assemble and add to list
         li.appendChild(nameLink);
         li.appendChild(timestamp);
         historyList.appendChild(li);
     });
-    
     // Toggle history section visibility
     const historyLog = document.getElementById('history-log');
     if (historyLog) {
@@ -215,7 +207,7 @@ function hideSettings() {
   document.getElementById("settings-view").style.display = "none";
 }
 
-// =================== Integrating History Feature  ===================
+// =================== Update: Integrating History Feature  ======================
 
 // Ensure scripts run only after DOM is loaded
 document.addEventListener("DOMContentLoaded", async () => {
@@ -227,16 +219,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     updateHistoryDisplay();
   });
 
-  // Update spin button to record history
+  // Update: Spin button records the history
   document.getElementById('spin').addEventListener('click', async () => {
     await spin();
-    const selectedRestaurant = document.getElementById('selected-restaurant').textContent;
-    if (selectedRestaurant && restaurantDetails[selectedRestaurant]) {
-      addToHistory(restaurantDetails[selectedRestaurant]);
-    }
+    // Wait a short moment for the wheel to finish spinning and update the selected restaurant
+    setTimeout(() => {
+      const selectedRestaurantElement = document.getElementById('selected-restaurant');
+      if (selectedRestaurantElement && selectedRestaurantElement.textContent) {
+        const selectedName = selectedRestaurantElement.textContent;
+        const restaurant = restaurantDetails[selectedName];
+        if (restaurant) {
+          console.log('Adding to history:', restaurant);
+          addToHistory(restaurant);
+        }
+      }
+    }, 3000); // Wait 3 seconds for wheel to finish spinning
   });
 
-  // ====================================================================
+  // ===============================================================================
 
   // Open settings view
   document.getElementById("open-settings").addEventListener("click", showSettings);
@@ -253,7 +253,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("save-settings").addEventListener("click", async () => {
     const distance = parseFloat(document.getElementById("distance").value);
     const price = document.getElementById("price").value;
-  
     // Save the updated settings
     chrome.storage.sync.set({ distance, price }, async () => {
       swal({
@@ -261,7 +260,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         icon: "success",
         button: false, // Hide the default OK button
       });
-  
       // Hide the settings view and fetch new restaurants
       hideSettings();
       await fetchRestaurants(); // Fetch restaurants with the new settings
