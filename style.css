@@ -6,17 +6,18 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Changed from center to allow proper scrolling */
-    min-height: 520px; /* Changed from fixed height to min-height */
+    /* Update: layout width and height */
+    justify-content: flex-start;
+    min-height: 520px;
     width: 400px;
     background-color: #ffffff;
-    /* box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); */
-    overflow-y: auto; /* Allow scrolling if content is too long */
+    /* Update: Add box shadow + scrollbar */
+    overflow-y: auto;
     overflow-x: hidden;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-}  
+}
 
 #popup-container {
     width: 100%;
@@ -28,13 +29,15 @@ html, body {
 canvas {
     border-radius: 50%;
     border: 10px solid #fff;
-    width: 310px; /* Layout width */
-    height: 310px; /* Layout height */
-    display: block; 
+    /* Update: layout width and height */
+    width: 310px;
+    height: 310px;
+    display: block;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
-    margin-bottom: 20px; /* Add space below wheel */
+    /* Update: Add space below wheel */
+    margin-bottom: 20px;
 }
-  
+
 button {
     font-family: 'Poppins', sans-serif;
     padding: 10px 20px;
@@ -52,20 +55,18 @@ button:hover {
 
 /* Specific styling for spin button */
 #spin {
-    font-weight: bold;
-    margin: 20px auto;
     display: block;
     width: 200px;
     padding: 12px 24px;
+    margin: 20px auto;
     font-size: 16px;
-    background-color: #007BFF;
+    font-weight: bold;
     color: white;
+    background-color: #007BFF;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
 }
 
 #spin:hover {
@@ -75,25 +76,27 @@ button:hover {
 
 /* Style for the Settings Button */
 #open-settings {
-  background: none; /* No default button background */
-  border: none; /* Remove default border */
-  margin: 10px; /* Add margin to separate it from other elements */
-  cursor: pointer; /* Change cursor to pointer */
-  padding: 0; /* No padding for the image */
-  position: absolute; /* Allow precise positioning */
-  top: 10px; /* Distance from the top of the container */
-  right: 10px; /* Distance from the right edge of the container */
+  background: none;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   width: 30px;
 }
 
 #open-settings img {
-  width: 20px; /* Adjust size to fit design */
-  height: 20px; /* Adjust size to fit design */
-  transition: transform 0.2s ease; /* Smooth hover animation */
+  /* Update: Adjust size to fit design */
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
 }
 
 #open-settings img:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover for interactivity */
+  /* Update: Slightly enlarge on hover for interactivity */
+  transform: scale(1.1);
 }
 
 /* General Styling for Settings View */
@@ -103,13 +106,14 @@ button:hover {
   /* border-radius: 15px; */
   padding: 20px;
   text-align: center;
-  width: 90%; /* Make the settings view wider */
-  margin: auto; /* Center the box */
+  width: 90%;
+  margin: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  overflow-y: auto; /* Add scroll if content exceeds the view */
+  /* Update: Add scrollbar */
+  overflow-y: auto;
 }
 
 /* Label Styling */
@@ -125,7 +129,7 @@ button:hover {
 #settings-view input[type="text"],
 #settings-view input[type="number"],
 #settings-view select {
-  width: 70%; /* Adjust width to match the new container size */
+  width: 70%;
   padding: 10px;
   margin-bottom: 15px;
   border: 2px solid #ccc;
@@ -136,9 +140,9 @@ button:hover {
 
 /* Button Styling */
 #settings-view button {
-  width: 45%; /* Make buttons slightly larger */
+  width: 45%;
   padding: 12px;
-  margin: 10px 2.5%; /* Space buttons evenly */
+  margin: 10px 2.5%;
   font-size: 1rem;
   font-weight: bold;
   color: #fff;
@@ -158,20 +162,16 @@ button:hover {
 #settings-view .form-group {
   margin-bottom: 10px;
   text-align: center;
-  width: 100%; /* Match the new container width */
+  width: 100%;
   margin: 0 auto 20px;
 }
 
 /* 🎡 Ensure `wheel-container` is positioned relative */
 #wheel-container {
     position: relative;
-    text-align: center;
-    width: 100%;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    width: 310px;
+    height: 310px;
+    margin-bottom: 20px;
 }
 
 /* 🔄 Loading GIF: Centered Inside the Wheel */
@@ -209,20 +209,19 @@ button:hover {
 /* History Container Styling */
 #history-log {
     width: 90%;
+    max-width: 350px;
     margin: 20px auto;
     padding: 15px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    max-height: 200px;
-    overflow-y: auto;
 }
 
 /* History Header Styling */
 #history-log h3 {
   color: #2c3e50;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-align: center;
   font-weight: 600;
 }
@@ -238,14 +237,11 @@ button:hover {
 
 /* Individual History Entry Styling */
 #history-list li {
-  padding: 8px 12px;
+  padding: 10px 15px;
   border-bottom: 1px solid #e9ecef;
-  font-size: 14px;
-  color: #495057;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.2s ease; /* Smooth hover effect */
 }
 
 /* Last History Entry (removes bottom border) */
@@ -289,4 +285,10 @@ button:hover {
 
 #history-list::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Result Container Styling */
+#result-container {
+    margin: 20px 0;
+    text-align: center;
 }
