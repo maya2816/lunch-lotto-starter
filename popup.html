@@ -21,24 +21,24 @@
       <div id="wheel-container">
         <img id="loading-gif" src="assets/loading.gif" alt="Loading..." style="display: none;">
         <canvas id="wheel" width="310" height="310"></canvas>
-        <button id="spin">Spin</button>
-
-        <!-- 🏆 History Log -->
-        <!-- This displays a list of previously selected restaurants -->
-        <!--Container for history log, initially hidden -->
-        <div id="history-log" style="display: none;">
-          <!--Heading for the history section -->
-          <h3>History of Selected Restaurants</h3>
-          <ul id="history-list"></ul>
-        </div>
       </div>
+
+      <!-- Spin Button -->
+      <button id="spin">Spin</button>
 
       <!-- 🏆 Selected Restaurant Result -->
       <div id="result-container" style="display: none;">
         <p id="selected-restaurant"></p>
         <a id="google-maps-link" href="#" target="_blank" style="display: none;">View on Google Maps</a>
       </div>
-      <!-- <button id="open-settings">Settings</button> -->
+
+      <!-- 🏆 History Log -->
+      <div id="history-log" style="display: none;">
+        <h3>Recent Restaurant Selections</h3>
+        <ul id="history-list"></ul>
+      </div>
+
+      <!-- Settings Button -->
       <button id="open-settings">
         <img src="assets/filter.jpg" alt="Settings">
       </button>
