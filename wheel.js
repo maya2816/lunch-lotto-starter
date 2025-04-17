@@ -199,6 +199,9 @@ function truncateOption(option) {
         icon: "success",
         button: false, // Hide the default OK button
       });
+      // Update:
+      // Add restaurant selection to history, once the wheel has stopped.
+      addToHistory(selectedOption);
       
       return;
     }

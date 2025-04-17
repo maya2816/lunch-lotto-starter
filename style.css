@@ -13,28 +13,28 @@ html, body {
     /* box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); */
     overflow: hidden;
     margin: 0;
-  }  
+  }
 
   canvas {
+    /* Update 1: Add border radius to the wheel */
     border-radius: 50%;
     border: 10px solid #fff;
-    width: 310px; /* Layout width */
-    height: 310px; /* Layout height */
-    display: block; 
+    width: 310px;
+    height: 310px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    display: block;
   }
-  
+  /* Update 2: Center the wheel */
   button {
     font-family: 'Poppins', sans-serif;
-    margin-top: 26px;
-    margin-left: 60px;
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    width: 60%;
+    transition: background-color 0.3s ease;
   }
   
   button:hover {
@@ -43,107 +43,140 @@ html, body {
 
 
 #spin {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 12px 24px;
     font-weight: bold;
-  }
+    font-size: 16px;
+    position: absolute;
+    bottom: 10px; /* Adjust bottom position */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* Ensure button stays above wheel */
+}
   
 /* Style for the Settings Button */
 #open-settings {
-  background: none; /* No default button background */
-  border: none; /* Remove default border */
-  margin: 10px; /* Add margin to separate it from other elements */
-  cursor: pointer; /* Change cursor to pointer */
-  padding: 0; /* No padding for the image */
-  position: absolute; /* Allow precise positioning */
-  top: 10px; /* Distance from the top of the container */
-  right: 10px; /* Distance from the right edge of the container */
-  width: 30px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
 }
 
-#open-settings img {
-  width: 20px; /* Adjust size to fit design */
-  height: 20px; /* Adjust size to fit design */
-  transition: transform 0.2s ease; /* Smooth hover animation */
+/* History Button */
+#open-history {
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
 }
 
-#open-settings img:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover for interactivity */
+#open-settings img,
+#open-history .material-icons {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+    color: #333;
+    font-size: 20px;
 }
 
-/* General Styling for Settings View */
+#open-settings img:hover,
+#open-history .material-icons:hover {
+    transform: scale(1.1);
+}
+
+/* Settings View */
 #settings-view {
-  display: none;
-  background-color: #ffffff;
-  /* border-radius: 15px; */
-  padding: 20px;
-  text-align: center;
-  width: 90%; /* Make the settings view wider */
-  margin: auto; /* Center the box */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  overflow-y: auto; /* Add scroll if content exceeds the view */
+    display: none;
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
 }
 
-/* Label Styling */
+/* Form Groups in Settings */
+#settings-view .form-group {
+    background-color: rgb(61, 69, 119);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+/* Labels in Settings */
 #settings-view label {
-  display: block;
-  font-weight: bold;
-  font-size: 1rem;
-  margin: 10px 0 5px;
-  color: #000;
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: white;
 }
 
-/* Input and Select Styling */
-#settings-view input[type="text"],
+/* Inputs in Settings */
 #settings-view input[type="number"],
 #settings-view select {
-  width: 70%; /* Adjust width to match the new container size */
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  font-size: 1rem;
-  color: #555;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    background-color: white;
+    color: #333;
 }
 
-/* Button Styling */
+/* Settings Buttons */
 #settings-view button {
-  width: 45%; /* Make buttons slightly larger */
-  padding: 12px;
-  margin: 10px 2.5%; /* Space buttons evenly */
-  font-size: 1rem;
-  font-weight: bold;
-  color: #fff;
-  background-color: #007BFF;
-  
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    width: 45%;
+    padding: 12px 0;
+    margin: 10px 2.5%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 #settings-view button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
-/* Align inputs and buttons */
-#settings-view .form-group {
-  margin-bottom: 10px;
-  text-align: center;
-  width: 100%; /* Match the new container width */
-  margin: 0 auto 20px;
-}
-
-background-color:rgb(61, 69, 119);
-  
-/* 🎡 Ensure `wheel-container` is positioned relative */
+/* Wheel Styles */
 #wheel-container {
-  position: relative;  /* ✅ This makes the GIF position relative to the wheel */
-  text-align: center;
-  width: 100%; /* ✅ Prevents overflow */
-  height: 310px; /* ✅ Matches wheel size */
-  overflow: hidden; /* ✅ Ensures GIF doesn't overflow */
+    position: relative;
+    text-align: center;
+    margin: 20px auto;
+    padding-bottom: 80px;
 }
 
 /* 🔄 Loading GIF: Centered Inside the Wheel */
@@ -175,3 +208,113 @@ background-color:rgb(61, 69, 119);
 .swal-title {
   font-size: 18px !important; /* Customize the title text size */
 }
+
+/* Navigation Buttons Container */
+.nav-buttons {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 35px;
+    z-index: 50;
+    height: 24px; /* Match button height */
+}
+
+/* History View */
+#history-view {
+  display: none;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+}
+
+#history-view h3 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+#history-list {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Common View Class */
+.view {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 1000;
+}
+
+/* Loading and Progress Bar Styles */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 400px;  /* Set a fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* Space elements apart */
+    align-items: center;
+    z-index: 1000;
+}
+
+#loading-gif {
+    width: 220px;
+    height: 220px;
+    display: block;
+    margin-top: 20px;  /* Add some top margin */
+}
+
+#progress-container {
+    width: 200px;  /* Make progress bar slightly narrower */
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 40px;  /* Push it away from the bottom */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#progress-bar {
+    height: 6px;
+    background: #007BFF;
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#progress-text {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 8px;
+    text-align: center;
+}
+

@@ -6,20 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lunch Lotto</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-
-  <!-- 🏆 Personalized Greeting -->
-  <div id="caption-box">
-    <h2 id="greeting">Time for a healthy meal 🥗!</h2>
-  </div>
-  
   <div id="popup-container">
-    <!-- 🎡 Main View -->
+    <!-- Main View -->
     <div id="main-view">
+      <!-- Navigation Bar -->
+      <div class="nav-buttons">
+        <button id="open-settings">
+          <img src="assets/filter.jpg" alt="Settings">
+        </button>
+        <button id="open-history">
+          <i class="material-icons">history</i>
+        </button>
+      </div>
+
+      <!-- Loading Container -->
+      <div id="loading-container" style="display: none;">
+        <img id="loading-gif" src="assets/loading.gif" alt="Loading...">
+        <div id="progress-container">
+          <div id="progress-bar"></div>
+        </div>
+        <div id="progress-text">Finding nearby restaurants...</div>
+      </div>
+
       <div id="wheel-container">
-        <img id="loading-gif" src="assets/loading.gif" alt="Loading..." style="display: none;">
         <canvas id="wheel" width="310" height="310"></canvas>
         <button id="spin">Spin</button>
       </div>
@@ -28,10 +41,6 @@
         <p id="selected-restaurant"></p>
         <a id="google-maps-link" href="#" target="_blank" style="display: none;">View on Google Maps</a>
       </div>
-      <!-- <button id="open-settings">Settings</button> -->
-      <button id="open-settings">
-        <img src="assets/filter.jpg" alt="Settings">
-      </button>
     </div>
 
     <!-- Settings View -->
@@ -50,6 +59,13 @@
       </div>
       <button id="save-settings">Save</button>
       <button id="close-settings">Back</button>
+    </div>
+
+    <!-- Update 4: Add History View -->
+    <div id="history-view" class="view">
+      <h3>Previous Selections</h3>
+      <div id="history-list"></div>
+      <button id="close-history">Back</button>
     </div>
   </div>
 
